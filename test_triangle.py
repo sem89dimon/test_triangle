@@ -1,4 +1,5 @@
 import pytest
+import allure
 
 
 class Test_Triangle:
@@ -29,17 +30,19 @@ class Test_Triangle:
             ("2", "-2", "7", None, "Кейс - "),
         ]
     )
+    @allure.title("Тестирование страницы треугольников")
     def test_triangle_page(self, triangle_page, side_a, side_b, side_c, expected_bug_text, expected_case_text):
         page = triangle_page
         
-        page.enter_sides(side_a, side_b, side_c)
+        with allure.step(f"Вводим данные в поля сторон: {side_a}, {side_b}, {side_c}"):
+            page.enter_sides(side_a, side_b, side_c)
 
         if expected_bug_text:
-            bug_elements = page.elements_are_visible(page.bug_logg, timeout=5)
-            
-            assert bug_elements, f"Не найден ожидаемый баг с текстом: '{expected_bug_text}'"
+            with allure.step(f"Проверка наличия ожидаемого результата: {expected_bug_text}"):
+                bug_elements = page.elements_are_visible(page.bug_logg, timeout=5)    
+                assert bug_elements, f"Не найден ожидаемый баг с текстом: '{expected_bug_text}'"
         
         if expected_case_text:
-            case_elements = page.elements_are_visible(page.case_logg, timeout=5)
-           
-            assert case_elements, f"Не найден ожидаемый кейс с текстом: '{expected_case_text}'"
+            with allure.step(f"Проверка наличия ожидаемого результата: {expected_case_text}"):
+                case_elements = page.elements_are_visible(page.case_logg, timeout=5)            
+                assert case_elements, f"Не найден ожидаемый кейс с текстом: '{expected_case_text}'"
