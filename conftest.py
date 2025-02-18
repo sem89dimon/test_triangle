@@ -17,6 +17,6 @@ def driver():
 @pytest.fixture(scope='session')
 def triangle_page(driver):
     url = "https://playground.learnqa.ru/puzzle/triangle"
-    page = Triangle_Page(driver, url)  # Передаем URL в класс страницы
-    page.open()  # Открываем страницу, если она не была открыта
+    page = Triangle_Page(driver, url)  
+    page.open()  
     yield page

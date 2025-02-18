@@ -30,10 +30,8 @@ class Triangle_Page:
         self.enter_side(self.locator_side_b, side_b)
         self.enter_side(self.locator_side_c, side_c)
         self.element_is_clickable(self.button_submit).click()
-        time.sleep(2)
-        # info = self.element_is_visible(self.info, timeout=5).text
-        # print(info)
-        # assert "Это прямоугольный треугольник." == info
+        
+       
 
     def element_is_visible(self, locator, timeout=5):
         return wait(self.driver, timeout).until(EC.visibility_of_element_located(locator))
