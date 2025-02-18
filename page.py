@@ -4,18 +4,21 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
 class Triangle_Page:
-    url = "https://playground.learnqa.ru/puzzle/triangle"
-    def __init__(self, driver):
+    
+    def __init__(self, driver, url):
         self.driver = driver
+        self.url = url
         self.locator_side_a = (By.CSS_SELECTOR, ".js_a")
         self.locator_side_b = (By.CSS_SELECTOR, ".js_b")
         self.locator_side_c = (By.CSS_SELECTOR, ".js_c")
         self.button_submit = (By.CSS_SELECTOR, ".btn-submit")
         self.bug_logg = (By.CSS_SELECTOR, ".bug_details .untraveled")
         self.case_logg = (By.CSS_SELECTOR, ".case_details .untraveled")
+        
 
     def open(self):
-        self.driver.get(self.url)
+        if self.driver.current_url != self.url:
+            self.driver.get(self.url)
 
     def enter_side(self, locator, value):
         side = self.element_is_visible(locator, timeout=5)
