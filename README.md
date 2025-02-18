@@ -3,6 +3,8 @@
 
 ## Для запуска тестов необходимо установить виртуальное окружение:
 python - m venv venv
+## Активация виртуального окружения
+venv\Scripts\activate
 
 ## Установить зависимости: 
 pip install -r requirements.txt
